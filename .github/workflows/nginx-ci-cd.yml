@@ -38,7 +38,7 @@ jobs:
       - name: Ensure Directory Exists for Docker Version
         run: |
           mkdir -p /home/tenant
-          touch $HOME/docker_version.txt
+          sudo touch $HOME/docker_version.txt
 
 
       - name: Check and Set Docker Tag
