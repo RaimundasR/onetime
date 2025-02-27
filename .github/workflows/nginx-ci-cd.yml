@@ -37,8 +37,10 @@ jobs:
           echo "✅ IMAGE_NAME set to: $IMAGE_NAME"
       - name: Ensure Directory Exists for Docker Version
         run: |
-          mkdir -p /home/tenant
-          sudo touch $HOME/docker_version.txt
+          VERSION_FILE="${RUNNER_TEMP}/docker_version.txt"
+          mkdir -p "$(dirname "$VERSION_FILE")"
+          touch "$VERSION_FILE"
+          echo "VERSION_FILE=$VERSION_FILE" >> $GITHUB_ENV
 
 
       - name: Check and Set Docker Tag
