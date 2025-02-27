@@ -3,7 +3,7 @@ name: Nginx Docker Build and Deploy
 on:
   push:
     branches:
-      - "feature/**"
+      - "features/**"
       - main
   pull_request:
     branches:
