@@ -35,6 +35,11 @@ jobs:
           IMAGE_NAME="$DOCKER_USERNAME/my-nginx-app"
           echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
           echo "✅ IMAGE_NAME set to: $IMAGE_NAME"
+      - name: Ensure Directory Exists for Docker Version
+        run: |
+          mkdir -p /home/tenant
+          touch $HOME/docker_version.txt
+
 
       - name: Check and Set Docker Tag
         id: docker_tag_step
