@@ -13,7 +13,7 @@ on:
 
 jobs:
   build-development:
-    runs-on: bka-dev
+    runs-on: bka-devops
     timeout-minutes: 5
     environment: dockerhub-registry
     if: github.event_name == 'push' && github.ref != 'refs/heads/main'
@@ -77,7 +77,7 @@ jobs:
           no-cache: true
 
   deploy-development:
-    runs-on: bka-dev
+    runs-on: bka-devops
     timeout-minutes: 5
     environment: dockerhub-registry
     needs: build-development
@@ -112,7 +112,7 @@ jobs:
 
 
   deploy-staging:
-    runs-on: bka-dev
+    runs-on: bka-devops
     timeout-minutes: 5
     environment: dockerhub-registry
     if: github.event_name == 'pull_request'
@@ -142,7 +142,7 @@ jobs:
 
 
   deploy-production:
-    runs-on: bka-dev
+    runs-on: bka-devops
     timeout-minutes: 5
     environment: dockerhub-registry
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
