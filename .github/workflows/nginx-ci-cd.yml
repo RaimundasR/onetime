@@ -35,11 +35,18 @@ jobs:
           IMAGE_NAME="$DOCKER_USERNAME/my-nginx-app"
           echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
           echo "✅ IMAGE_NAME set to: $IMAGE_NAME"
+      - name: Ensure Directory Exists for Docker Version
+        run: |
+          VERSION_FILE="${RUNNER_TEMP}/docker_version.txt"
+          mkdir -p "$(dirname "$VERSION_FILE")"
+          touch "$VERSION_FILE"
+          echo "VERSION_FILE=$VERSION_FILE" >> $GITHUB_ENV
+
 
       - name: Check and Set Docker Tag
         id: docker_tag_step
         run: |
-          VERSION_FILE="/home/tenant/docker_version.txt"
+          VERSION_FILE="$HOME/docker_version.txt"
           if [[ -f "$VERSION_FILE" ]]; then
             LAST_VERSION=$(cat "$VERSION_FILE" | sed 's/v//')
             NEXT_VERSION=$((LAST_VERSION + 1))
